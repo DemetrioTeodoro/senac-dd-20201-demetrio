@@ -6,11 +6,12 @@ public class Cliente {
 	
 	private Integer id;
 	private String nome;
+	private String sobrenome;
 	private String cpf;
 	private Endereco endereco;
 	private List<Telefone> telefones;
 	
-	public Cliente(Integer id, String nome, String cpf, Endereco endereco, List<Telefone> telefones) {
+	public Cliente(Integer id, String nome, String sobrenome, String cpf, Endereco endereco, List<Telefone> telefones) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,6 +41,14 @@ public class Cliente {
 		this.nome = nome;
 	}
 
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -66,8 +75,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", telefones="
-				+ telefones + "]";
+		return nome + " cpf=" + cpf;
 	}
 
 }

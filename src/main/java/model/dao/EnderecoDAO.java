@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.naming.spi.DirStateFactory.Result;
 
+import model.entity.Cliente;
 import model.entity.Endereco;
 
 public class EnderecoDAO implements BaseDAO<Endereco> {
@@ -38,8 +39,25 @@ public class EnderecoDAO implements BaseDAO<Endereco> {
 	}
 
 	public ArrayList<Endereco> consultarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = Banco.getConnection();
+		String sql = " SELECT * FROM ENDERECO ";
+
+		Statement stmt = Banco.getStatement(conn);
+		ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
+		try {
+			ResultSet resultadoDaConsulta = stmt.executeQuery(sql);
+
+			while (resultadoDaConsulta.next()) {
+				Endereco endereco = construirResultSet(resultadoDaConsulta);
+				enderecos.add(endereco);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar telefones");
+			System.out.println("Erro: " + e.getMessage());
+		}
+
+		return enderecos;
 	}
 
 	public Endereco consultarPorId(int id) {
@@ -63,7 +81,7 @@ public class EnderecoDAO implements BaseDAO<Endereco> {
 		Endereco endereco = new Endereco();
 		try {
 			endereco.setId(resultado.getInt("id"));
-			endereco.setCep(resultado.getString("cep"));
+			endereco.setCep(resultado.getInt("cep"));
 			endereco.setBairro(resultado.getString("bairro"));
 			endereco.setCidade(resultado.getString("cidade"));
 			endereco.setEstado(resultado.getString("estado"));

@@ -1,19 +1,23 @@
 package model.entity;
 
 public class Telefone {
-	
+
 	private Integer id;
 	private String ddd;
 	private String numero;
 	private boolean movel;
+	private boolean ativo;
+	private String codigoPais;
 	private Cliente dono;
-	
-	public Telefone(Integer id, String ddd, String numero, boolean movel, Cliente dono) {
+
+	public Telefone(Integer id, String ddd, String numero, boolean movel, boolean ativo, String codPais, Cliente dono) {
 		super();
 		this.id = id;
 		this.ddd = ddd;
 		this.numero = numero;
 		this.movel = movel;
+		this.ativo = ativo;
+		this.codigoPais = codPais;
 		this.dono = dono;
 	}
 
@@ -53,7 +57,23 @@ public class Telefone {
 	public void setMovel(boolean movel) {
 		this.movel = movel;
 	}
-	
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public String getCodigoPais() {
+		return codigoPais;
+	}
+
+	public void setCodigoPais(String codPais) {
+		this.codigoPais = codPais;
+	}
+
 	public Cliente getDono() {
 		return dono;
 	}
@@ -64,7 +84,7 @@ public class Telefone {
 
 	@Override
 	public String toString() {
-		return "Telefone [id=" + id + ", ddd=" + ddd + ", numero=" + numero + ", movel=" + movel + " dono=" + (dono != null ? dono.getNome() : "") + "]";
+		return "numero=" + numero;
 	}
-	
+
 }
